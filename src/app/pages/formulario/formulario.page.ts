@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+import { DataService } from 'src/app/data.service';
 
 @Component({
   selector: 'app-formulario',
@@ -16,7 +17,8 @@ export class FormularioPage implements OnInit {
 
   constructor(
     private router:Router,
-    private alertController:AlertController
+    private alertController:AlertController,
+    private dataService: DataService
     ) { }
 
   ngOnInit() {
@@ -24,14 +26,20 @@ export class FormularioPage implements OnInit {
 
   onSubmit()
   {
-    if (this.usuario.username=="wa@coldo.cl" && this.usuario.password=="123"){
+    let rol = "";
+    if (this.usuario.username=="ale.sepulveda@duocuc.cl" && this.usuario.password=="wacoldo"){
       this.router.navigate(['/home'])
+      rol = "profesor";
+    }
+    else if (this.usuario.username=="soila.cerda@duocuc.cl" && this.usuario.password=="yolaprieto") {
+      this.router.navigate(['/home'])
+      rol = "estudiante";
     }
     else{
       
       this.presentAlert()
     }
-
+    this.dataService.setRol(rol);
   }
 
 
