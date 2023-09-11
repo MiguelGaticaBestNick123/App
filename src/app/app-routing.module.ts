@@ -8,7 +8,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'formulario',
     pathMatch: 'full'
   },
   {
@@ -18,7 +18,8 @@ const routes: Routes = [
   {
     path: 'pagina2',
     loadChildren: () => import('./pages/pagina2/pagina2.module').then( m => m.Pagina2PageModule)
-  },  {
+  },
+  {
     path: 'alertas',
     loadChildren: () => import('./pages/alertas/alertas.module').then( m => m.AlertasPageModule)
   },
