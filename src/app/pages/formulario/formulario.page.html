@@ -1,15 +1,14 @@
 
 <ion-header>
-  <ion-toolbar color="dark" >
-    <ion-title>
-      Login
-    </ion-title>
+  <ion-toolbar color="light" >
+    <img style="width: 60%;" src="assets/img/2560px-Logo_DuocUC.svg.png">
     <ion-icon slot="end" name="person" size="large" class="ion-padding"></ion-icon>
   </ion-toolbar>
 </ion-header>
 <ion-content class="ion-padding">
 
-  <h3>Iniciar Sesión</h3>
+  <h3 style="text-align: center;" >Iniciar Sesión</h3>
+  <br>
   <form #miFormulario="ngForm" (ngSubmit)="onSubmit()">
     <ion-item>
       <ion-input labelPlacement="floating" label="E-mail" required type="email" aria-label="Email" name="email" [(ngModel)]="usuario.username" ></ion-input>
