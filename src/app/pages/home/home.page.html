@@ -14,12 +14,12 @@
  <!--  <ion-text color="tertiary" routerLink="/pagina1">
     <h4>Página 1</h4>
   </ion-text>  -->
-  <ion-button (click)="onClick('pagina1')" expand="full" color="primary" *ngIf="mostrarBotonRegistrarAsis">
+  <ion-button (click)="onClick('pagina1')" expand="full" color="tertiary" *ngIf="mostrarBotonRegistrarAsis">
     Registrar Asistencia QR
   </ion-button>
   <br>
 
-  <ion-button (click)="onClick('pagina2')" expand="full" color="secondary" *ngIf="mostrarBotonGenerarCurso">
+  <ion-button (click)="onClick('pagina2')" expand="full" color="tertiary" *ngIf="mostrarBotonGenerarCurso">
     Generar Qr Asistencia
   </ion-button>
   <br>
@@ -28,6 +28,14 @@
     Asistencias
   </ion-button>
   <br>
- 
+  <ion-button (click)="onClick('asisprofe')" expand="full" color="tertiary" *ngIf="mostrarBotonGenerarCurso"> 
+    Asistencias
+  </ion-button>
+  <br>
+
+  <ion-button (click)="onClick('formulario')" expand="full" color="danger">
+    Desconectarse
+  </ion-button>
+  <br>
 
 </ion-content>

@@ -8,12 +8,14 @@ import { DataService } from 'src/app/data.service';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  mostrarBotonGenerarCurso: boolean = true;
-  mostrarBotonRegistrarAsis: boolean = true;
+  mostrarBotonGenerarCurso: boolean = false;
+  mostrarBotonRegistrarAsis: boolean = false;
 
   constructor(private router: Router, 
     private dataService: DataService) {
     const rol = this.dataService.getRol();
+    console.log('Rol del usuario:', rol); // Muestra el rol del usuario en la consola
+
 
     if (rol === 'profesor') {
       this.mostrarBotonGenerarCurso = true;
@@ -28,4 +30,5 @@ export class HomePage {
   onClick(ruta: string) {
     this.router.navigate(['/' + ruta]);
   }
+  
 }

@@ -16,45 +16,41 @@ export class FormularioPage implements OnInit {
  }
 
   constructor(
-    private router:Router,
-    private alertController:AlertController,
+    private router: Router,
+    private alertController: AlertController,
     private dataService: DataService
-    ) { }
+  ) { }
 
   ngOnInit() {
   }
 
-  onSubmit()
-  {
-    let rol = "";
-    if (this.usuario.username=="ale.sepulveda@duocuc.cl" && this.usuario.password=="wacoldo"){
-      this.router.navigate(['/home'])
-      rol = "profesor";
-    }
-    else if (this.usuario.username=="soila.cerda@duocuc.cl" && this.usuario.password=="yolaprieto") {
-      this.router.navigate(['/home'])
-      rol = "estudiante";
-    }
-    else{
-      
-      this.presentAlert()
+  onSubmit() {
+    let rol = '';
+    if (this.usuario.username == 'ale.sepulveda@duocuc.cl' && this.usuario.password == 'wacoldo') {
+      rol = 'profesor';
+      console.log('Rol establecido como profesor');
+      // Resto del código para la redirección
+      this.router.navigate(['/home']);
+    } else if (this.usuario.username == 'soila.cerda@duocuc.cl' && this.usuario.password == 'yolaprieto') {
+      rol = 'estudiante';
+      console.log('Rol establecido como estudiante');
+      // Resto del código para la redirección
+      this.router.navigate(['/home']);
+    } else {
+      this.presentAlert();
     }
     this.dataService.setRol(rol);
   }
-
 
   async presentAlert() {
     const alert = await this.alertController.create({
       header: 'Alerta',
       subHeader: 'Información',
-      message: "Usuario y/o password incorrectos",
+      message: "Usuario y/o contraseña incorrectos",
       buttons: ['OK'],
-      backdropDismiss:false,
-      
+      backdropDismiss: false,
     });
 
     await alert.present();
-
- 
   }
 }
