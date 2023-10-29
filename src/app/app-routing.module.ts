@@ -32,6 +32,17 @@ const routes: Routes = [
     loadChildren: () => import('./pages/asisprofe/asisprofe.module').then( m => m.AsisprofePageModule)
   },
 
+  {
+    path: 'olvideclave',
+    loadChildren: () => import('./pages/olvideclave/olvideclave.module').then( m => m.OlvideclavePageModule)
+  },
+  {
+    path: 'profile',
+    loadChildren: () => import('./pages/profile/profile.module').then( m => m.ProfilePageModule)
+  },
+
+
+
 
 ];
 

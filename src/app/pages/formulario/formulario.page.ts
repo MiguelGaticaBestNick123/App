@@ -20,6 +20,11 @@ export class FormularioPage implements OnInit {
     private alertController: AlertController,
     private dataService: DataService
   ) { }
+  onClick(pageName: string) {
+    if (pageName === 'olvideclave') {
+      this.router.navigate(['/olvideclave']); // Aquí se asume que 'olvideclave' es la ruta de tu página.
+    }
+  }
 
   ngOnInit() {
   }
@@ -36,11 +41,23 @@ export class FormularioPage implements OnInit {
       console.log('Rol establecido como estudiante');
       // Resto del código para la redirección
       this.router.navigate(['/home']);
+    } else if (this.usuario.username == 'fe' && this.usuario.password == 'fe') {
+      rol = 'estudiante';
+      console.log('Rol establecido como estudiante');
+      // Resto del código para la redirección
+      this.router.navigate(['/home']);
+    } else if (this.usuario.username == 'mi' && this.usuario.password == 'mi') {
+      rol = 'profesor';
+      console.log('Rol establecido como profesor');
+      // Resto del código para la redirección
+      this.router.navigate(['/home']);
     } else {
       this.presentAlert();
     }
     this.dataService.setRol(rol);
   }
+
+  
 
   async presentAlert() {
     const alert = await this.alertController.create({

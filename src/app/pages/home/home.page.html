@@ -3,7 +3,7 @@
     <ion-title>
       Asistencia Duoc
     </ion-title>
-    <ion-icon slot="end" name="person" size="large" class="ion-padding"></ion-icon>
+    <ion-icon slot="end" name="person" size="large" class="ion-padding" (click)="onClick('profile')"></ion-icon>
   </ion-toolbar>
 </ion-header>
 
@@ -11,9 +11,7 @@
   
   <br>
   
- <!--  <ion-text color="tertiary" routerLink="/pagina1">
-    <h4>Página 1</h4>
-  </ion-text>  -->
+ 
   <ion-button (click)="onClick('pagina1')" expand="full" color="tertiary" *ngIf="mostrarBotonRegistrarAsis">
     Registrar Asistencia QR
   </ion-button>
