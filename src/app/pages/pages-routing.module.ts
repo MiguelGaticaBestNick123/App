@@ -7,7 +7,11 @@ const routes: Routes = [
   {
     path: '',
     component: PagesPage
+  },  {
+    path: 'confirmarcodigo',
+    loadChildren: () => import('./confirmarcodigo/confirmarcodigo.module').then( m => m.ConfirmarcodigoPageModule)
   }
+
 ];
 
 @NgModule({

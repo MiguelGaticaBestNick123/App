@@ -1,19 +1,22 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
 import { OlvideclavePageRoutingModule } from './olvideclave-routing.module';
 
 import { OlvideclavePage } from './olvideclave.page';
+import { ComponentsModule } from 'src/app/components/components.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    OlvideclavePageRoutingModule
+    OlvideclavePageRoutingModule,
+    ComponentsModule,
+    ReactiveFormsModule
   ],
   declarations: [OlvideclavePage]
 })
