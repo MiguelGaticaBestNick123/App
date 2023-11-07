@@ -1,34 +1,31 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { DataService } from 'src/app/data.service';
+import { AuthService } from '../../services/auth.service';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage {
-  mostrarBotonGenerarCurso: boolean = false;
-  mostrarBotonRegistrarAsis: boolean = false;
+export class HomePage implements OnInit {
+  rol: string = '';
 
-  constructor(private router: Router, 
-    private dataService: DataService) {
-    const rol = this.dataService.getRol();
-    console.log('Rol del usuario:', rol); // Muestra el rol del usuario en la consola
+  constructor(private router: Router, private authService: AuthService, private firestore: AngularFirestore) { }
 
-
-    if (rol === 'profesor') {
-      this.mostrarBotonGenerarCurso = true;
-      this.mostrarBotonRegistrarAsis = false;
-    }
-    if (rol === 'estudiante') {
-      this.mostrarBotonGenerarCurso = false;
-      this.mostrarBotonRegistrarAsis = true;
-    }
-  }
+  ngOnInit() {
+    this.authService.user$.subscribe(user => {
+        if (user) {
+            this.firestore.collection('users').doc(user.uid).valueChanges().subscribe((doc: any) => {
+                this.rol = doc.role;
+                console.log(this.rol);
+            });
+        }
+    });
+}
 
   onClick(ruta: string) {
     this.router.navigate(['/' + ruta]);
   }
-  
 }

@@ -40,6 +40,7 @@ export class OlvideclavePage {
     });
 
     // Redirigir a confirmacion de codigo.
+    
     this.router.navigate(['/confirmarcodigo']);
   }
 

@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar color="light" >
+    <img style="width: 60%;" src="assets/img/2560px-Logo_DuocUC.svg.png">
+    <ion-icon slot="end" name="person" size="large" class="ion-padding"></ion-icon>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form (ngSubmit)="onSubmit()">
+    <ion-item>
+      <ion-input [(ngModel)]="usuario.username" name="username" placeholder="Email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input [(ngModel)]="usuario.password" name="password" type="password" placeholder="Clave"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Rol</ion-label>
+      <ion-select [(ngModel)]="usuario.role" name="role">
+        <ion-select-option value="profesor">Profesor</ion-select-option>
+        <ion-select-option value="alumno">Alumno</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-button expand="full" color="primary" type="submit" class="ion-padding">
+      Registrarse
+    </ion-button>
+  </form>
+</ion-content>

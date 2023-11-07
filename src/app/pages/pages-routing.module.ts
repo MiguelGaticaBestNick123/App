@@ -10,6 +10,10 @@ const routes: Routes = [
   },  {
     path: 'confirmarcodigo',
     loadChildren: () => import('./confirmarcodigo/confirmarcodigo.module').then( m => m.ConfirmarcodigoPageModule)
+  },
+  {
+    path: 'registro',
+    loadChildren: () => import('./registro/registro.module').then( m => m.RegistroPageModule)
   }
 
 ];

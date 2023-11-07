@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
-import { DataService } from 'src/app/data.service';
 
 @Component({
   selector: 'app-formulario',
@@ -9,17 +8,10 @@ import { DataService } from 'src/app/data.service';
   styleUrls: ['./formulario.page.scss'],
 })
 export class FormularioPage implements OnInit {
+  usuario = {username: '', password: ''};
 
- usuario={
-  username:'',
-  password:''
- }
-
-  constructor(
-    private router: Router,
-    private alertController: AlertController,
-    private dataService: DataService
-  ) { }
+  constructor(private authService: AuthService, private router: Router) { }
+  
   onClick(pageName: string) {
     if (pageName === 'olvideclave') {
       this.router.navigate(['/olvideclave']); // Aquí se asume que 'olvideclave' es la ruta de tu página.
@@ -30,44 +22,16 @@ export class FormularioPage implements OnInit {
   }
 
   onSubmit() {
-    let rol = '';
-    if (this.usuario.username == 'ale.sepulveda@duocuc.cl' && this.usuario.password == 'wacoldo') {
-      rol = 'profesor';
-      console.log('Rol establecido como profesor');
-      // Resto del código para la redirección
+    this.authService.login(this.usuario.username, this.usuario.password)
+    .then((result) => {
+      console.log(result);
+      // Redirigir al usuario a la página principal
       this.router.navigate(['/home']);
-    } else if (this.usuario.username == 'soila.cerda@duocuc.cl' && this.usuario.password == 'yolaprieto') {
-      rol = 'estudiante';
-      console.log('Rol establecido como estudiante');
-      // Resto del código para la redirección
-      this.router.navigate(['/home']);
-    } else if (this.usuario.username == 'fe' && this.usuario.password == 'fe') {
-      rol = 'estudiante';
-      console.log('Rol establecido como estudiante');
-      // Resto del código para la redirección
-      this.router.navigate(['/home']);
-    } else if (this.usuario.username == 'mi' && this.usuario.password == 'mi') {
-      rol = 'profesor';
-      console.log('Rol establecido como profesor');
-      // Resto del código para la redirección
-      this.router.navigate(['/home']);
-    } else {
-      this.presentAlert();
-    }
-    this.dataService.setRol(rol);
-  }
-
-  
-
-  async presentAlert() {
-    const alert = await this.alertController.create({
-      header: 'Alerta',
-      subHeader: 'Información',
-      message: "Usuario y/o contraseña incorrectos",
-      buttons: ['OK'],
-      backdropDismiss: false,
+    })
+    .catch((error:any) => {
+      // Manejar el error
+      console.error(error);
     });
-
-    await alert.present();
+  ;
   }
 }

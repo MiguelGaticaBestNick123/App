@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
+
 
 @Component({
   selector: 'app-confirmarcodigo',
@@ -7,7 +9,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ConfirmarcodigoPage implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router, private route: ActivatedRoute) {
+    
+   }
 
   ngOnInit() {
   }

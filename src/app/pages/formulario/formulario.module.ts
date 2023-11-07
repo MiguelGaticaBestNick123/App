@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { FormularioPageRoutingModule } from './formulario-routing.module';
-
+import { AngularFireModule } from '@angular/fire/compat';
 import { FormularioPage } from './formulario.page';
 import { ComponentsModule } from '../../components/components.module';
 
@@ -16,6 +16,7 @@ import { ComponentsModule } from '../../components/components.module';
     IonicModule,
     FormularioPageRoutingModule,
     ComponentsModule,
+    
   ],
   declarations: [FormularioPage]
 })
