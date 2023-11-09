@@ -22,7 +22,7 @@ export class AuthService {
         );
     }
 
-    async register(email: string, password: string, role: string) {
+    async register(email: string, password: string) {
         try {
             const result = await this.afAuth.createUserWithEmailAndPassword(email, password);
             console.log('Usuario registrado exitosamente');
@@ -46,30 +46,10 @@ export class AuthService {
     logout() {
         return this.afAuth.signOut();
     }
-
-    private updateUserData(user: any, role: string) {
-        const userRef = this.afs.doc(`users/${user.uid}`);
-        return userRef.set({
-            uid: user.uid,
-            email: user.email,
-            roles: {
-                [role]: true
-            }
-        }, { merge: true });
+    getCurrentUser() {
+        return this.afAuth.currentUser;
     }
-
-    canRead(user: any): boolean {
-        const allowed = ['profesor', 'alumno'];
-        return this.checkAuthorization(user, allowed);
-    }
-
-    private checkAuthorization(user: any, allowedRoles: any[]): boolean {
-        if (!user) return false;
-        for (const role of allowedRoles) {
-            if (user.roles[role]) {
-                return true;
-            }
-        }
-        return false;
+    async resetPassword(email: string): Promise<void> {
+        return this.afAuth.sendPasswordResetEmail(email);
     }
 }

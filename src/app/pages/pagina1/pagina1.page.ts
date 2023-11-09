@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
+
 
 
 @Component({
@@ -9,10 +11,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./pagina1.page.scss'],
 })
 export class Pagina1Page implements OnInit {
-
+  rol: string | null= '';
   public alertButtons = ['OK'];
 
-  constructor(private alertController: AlertController, private router: Router) {}
+  constructor(private alertController: AlertController, private router: Router,  private authService: AuthService) {}
 
   async presentAlert() {
     const alert = await this.alertController.create({
@@ -44,8 +46,17 @@ export class Pagina1Page implements OnInit {
 
 
   
-  ngOnInit() {
-  }
+  async ngOnInit() {  //Crear un return en formulario para k no se vea la pagina
+    let user = await this.authService.getCurrentUser();
+    if (user && user.email) {
+      this.rol = localStorage.getItem(user.email);
+    }
+    if (this.rol == null || this.rol == '')
+    {
+      this.router.navigate(['/formulario'])
+      console.log("No autorizado")
+    }
+}
   
 
 }

@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import * as emailjs from 'emailjs-com';
+import { AuthService } from '../../services/auth.service';
+import { AlertController } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-olvideclave',
@@ -9,10 +11,9 @@ import * as emailjs from 'emailjs-com';
   styleUrls: ['./olvideclave.page.scss'],
 })
 export class OlvideclavePage {
-
   resetPasswordForm: FormGroup;
 
-  constructor(private router: Router) {
+  constructor(private authService: AuthService, private router: Router, private alertController: AlertController) {
     this.resetPasswordForm = new FormGroup({
       email: new FormControl('', [
         Validators.required,
@@ -20,28 +21,39 @@ export class OlvideclavePage {
       ])
     });
   }
-
+  
   onSubmit() {
     // Enviar correo electrónico de restablecimiento de contraseña
     let userEmail = this.resetPasswordForm.get('email')?.value;
-    let userName = userEmail.split('@')[0];
-    const templateParams = {
-      userName: userName,
-      code: '666',
-      userEmail: userEmail
-    };
-
-    emailjs.send('service_923jdde', 'template_cs289ie', templateParams, '18CIFtrY3ORVXXMQ7')
-    .then((result) => {
-      console.log('Email successfully sent!');
+    
+    this.authService.resetPassword(userEmail)
+    .then(() => {
+      console.log('Correo de restablecimiento de contraseña enviado!');
+      this.showConfirmation();
+      
     })
     .catch((error) => {
-        console.error('There has been an error:', error);
+        console.error('Ha habido un error:', error);
     });
-
-    // Redirigir a confirmacion de codigo.
-    
-    this.router.navigate(['/confirmarcodigo']);
   }
-
+  async showConfirmation() {
+    const alert = await this.alertController.create({
+        header: 'Se ha enviado el correo!',
+        message: `Revise su bandeja de entrada o spam | Correo : [${this.resetPasswordForm.get('email')?.value}]`,
+        buttons: [{
+            text: 'Aceptar',
+            handler: () => {
+                this.router.navigate(['/formulario']);
+            }
+        }]
+        
+    });
+    await alert.present();
+  }
+  onClick(pageName: string) {
+    if (pageName === 'inicio') {
+      this.router.navigate(['/formulario']); 
+    }
+    
+  }
 }

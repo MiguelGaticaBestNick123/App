@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-formulario',
@@ -9,29 +9,37 @@ import { Router } from '@angular/router';
 })
 export class FormularioPage implements OnInit {
   usuario = {username: '', password: ''};
+  role: string = '';
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute) { }
   
   onClick(pageName: string) {
     if (pageName === 'olvideclave') {
-      this.router.navigate(['/olvideclave']); // Aquí se asume que 'olvideclave' es la ruta de tu página.
+      this.router.navigate(['/olvideclave']); 
+    }
+    if (pageName === 'registrarse') {
+      this.router.navigate(['/registro']); 
     }
   }
 
-  ngOnInit() {
+  async ngOnInit() {
+    const user = await this.authService.getCurrentUser();
+    if (user){
+      this.router.navigate(['/home']);
+    }
   }
 
   onSubmit() {
     this.authService.login(this.usuario.username, this.usuario.password)
     .then((result) => {
-      console.log(result);
-      // Redirigir al usuario a la página principal
-      this.router.navigate(['/home']);
-    })
+    console.log(result);
+    this.router.navigate(['/home'])  
+    }
+    )
+
     .catch((error:any) => {
-      // Manejar el error
       console.error(error);
     });
-  ;
+  
   }
 }

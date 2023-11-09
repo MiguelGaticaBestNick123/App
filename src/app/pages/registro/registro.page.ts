@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
-import { Router } from '@angular/router';
+import { Router, NavigationExtras } from '@angular/router';
 import { AlertController } from '@ionic/angular';
-
 
 @Component({
   selector: 'app-registro',
@@ -14,7 +13,17 @@ export class RegistroPage implements OnInit {
   constructor(private authService: AuthService, private router: Router,
     private alertController: AlertController) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    const user = await this.authService.getCurrentUser();
+    if (user){
+      this.router.navigate(['/home']);
+    }
+  }
+  onClick(pageName: string) {
+    if (pageName === 'inicio') {
+      this.router.navigate(['/formulario']); 
+    }
+    
   }
   async showConfirmation() {
     const alert = await this.alertController.create({
@@ -30,18 +39,26 @@ export class RegistroPage implements OnInit {
 
     await alert.present();
   }
-  
+
   async onSubmit() {
     try {
-        await this.authService.register(this.usuario.username, this.usuario.password, this.usuario.role);
+        await this.authService.register(this.usuario.username, this.usuario.password);
         console.log('Registro exitoso');
+        console.log(this.usuario.role)
+        if (this.usuario.username && this.usuario.role) {
+          localStorage.setItem(this.usuario.username, this.usuario.role)
+        }
+        // Almacenar el rol del usuario en el almacenamiento local
+        let navigationExtras: NavigationExtras = {
+            state: {
+                role: this.usuario.role
+            }
+        };
+        
+
         this.showConfirmation();
     } catch (error) {
         console.error(error);
     }
-}
-
-
-
-
+  }
 }
