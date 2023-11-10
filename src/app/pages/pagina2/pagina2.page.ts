@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 })
 export class Pagina2Page implements OnInit {
   rol: string | null= '';
+  texto:any;
   constructor(private authService: AuthService, private router: Router) { }
 
   async ngOnInit() {  //Crear un return en formulario para k no se vea la pagina
