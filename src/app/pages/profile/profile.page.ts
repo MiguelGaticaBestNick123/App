@@ -30,12 +30,12 @@ export class ProfilePage implements OnInit {
       this.router.navigate(['/formulario']);
       console.log("No autorizado");
     } else {
-      this.getUserData(); // Llama al método para obtener los datos del usuario
+      this.getUserData(); 
     }
   }
 
   getUserData() {
-    // Suponiendo que tienes un método en tu servicio para obtener los datos del usuario
-    this.userData = this.dataService.getUser(); // Esta función podría variar según tu servicio
+    
+    this.userData = this.dataService.getUser(); 
   }
 }
