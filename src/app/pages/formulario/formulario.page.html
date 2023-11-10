@@ -1,34 +1,34 @@
-
 <ion-header>
-  <ion-toolbar color="light" >
-    <img style="width: 60%;" src="assets/img/2560px-Logo_DuocUC.svg.png">
+  <ion-toolbar color="light" class="ion-padding">
+    <img src="assets/img/2560px-Logo_DuocUC.svg.png" alt="Logo" class="logo-img">
   </ion-toolbar>
 </ion-header>
+
 <ion-content class="ion-padding">
+  <div class="login-container">
+    <h3 class="login-title">Iniciar Sesión</h3>
 
-  <h3 style="text-align: center;" >Iniciar Sesión</h3>
-  <br>
-  <form #miFormulario="ngForm" (ngSubmit)="onSubmit()">
-    <ion-item>
-      <ion-input labelPlacement="floating" label="E-mail" required type="email" aria-label="Email" name="email" [(ngModel)]="usuario.username" ></ion-input>
-    </ion-item>
-    <ion-item>
+    <form #miFormulario="ngForm" (ngSubmit)="onSubmit()" class="login-form">
+      <ion-item class="ion-margin-bottom">
+        <ion-label position="floating">E-mail</ion-label>
+        <ion-input type="email" name="email" [(ngModel)]="usuario.username" required></ion-input>
+      </ion-item>
 
-      <ion-input labelPlacement="floating" label="Password" required type="password" aria-label="password" name="password" [(ngModel)]="usuario.password" ></ion-input>
-    </ion-item>
-    
-    
-   <!--  <ion-button block color="primary" type="submit" [disabled]="loginForm.invalid">
-      Login
-    </ion-button> -->
-    <ion-button expand="full" color="primary" type="submit" class="ion-padding" [disabled]="miFormulario.invalid">
-      Login
-    </ion-button>
+      <ion-item class="ion-margin-bottom">
+        <ion-label position="floating">Contraseña</ion-label>
+        <ion-input type="password" name="password" [(ngModel)]="usuario.password" required></ion-input>
+      </ion-item>
 
-  </form>
+      <ion-button expand="full" color="primary" type="submit" [disabled]="miFormulario.invalid" class="login-button">
+        Iniciar Sesión
+      </ion-button>
+    </form>
 
-  <div class="texto-centrado">
-    <a (click)="onClick('olvideclave')">¿Olvidaste tu contraseña?</a> <br><br>
-    <a (click)="onClick('registrarse')">Registrarse</a>
+    <div class="login-links">
+      <a (click)="onClick('olvideclave')">¿Olvidaste tu contraseña?</a>
+      <br>
+      <br>
+      <a (click)="onClick('registrarse')">Registrarse</a>
+    </div>
   </div>
 </ion-content>

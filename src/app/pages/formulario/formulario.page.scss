@@ -1,5 +1,30 @@
-.texto-centrado{
-    display: block;
-    margin: auto;
-    text-align: center;
+.logo-img {
+  width: 60%;
+}
+
+.login-container {
+  text-align: center;
+}
+
+.login-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.login-form {
+  max-width: 80%;
+  margin: auto;
+}
+
+.login-button {
+  margin-top: 20px;
+}
+
+.login-links {
+  margin-top: 20px;
+}
+
+.texto-centrado {
+  text-align: center;
 }
