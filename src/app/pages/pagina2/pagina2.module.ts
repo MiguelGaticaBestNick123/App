@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
+import { QRCodeModule } from 'angularx-qrcode';
 import { IonicModule } from '@ionic/angular';
 
 import { Pagina2PageRoutingModule } from './pagina2-routing.module';
@@ -16,6 +16,7 @@ import { ComponentsModule } from 'src/app/components/components.module';
     IonicModule,
     Pagina2PageRoutingModule,
     ComponentsModule,
+    QRCodeModule,
   ],
   declarations: [Pagina2Page]
 })

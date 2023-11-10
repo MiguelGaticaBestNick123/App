@@ -1,15 +1,11 @@
 <app-encabezado titulo="Generar Qr "></app-encabezado>
 
-<ion-content class="ion-padding">
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-
-  <img style="width: 150%;" src="assets/img/qv8DxqfpI1EWmCIAAAAASUVORK5CYII.png">
+<ion-content class="ion-text-center ion-align-items-center ion-justify-content-center" fullscreen="true">
+  <ion-text color="primary">
+    <h1>Generar QR</h1>
+  </ion-text>
+  <ion-input [(ngModel)]="texto" placeholder="Texto"></ion-input>
+  <br><br>
+  <br><br>
+  <qrcode [qrdata]="texto" [width]="400"></qrcode>
 </ion-content>
