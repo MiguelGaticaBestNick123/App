@@ -16,8 +16,24 @@ export class Pagina1Page implements OnInit {
   constructor(private alertController: AlertController, private router: Router,  private authService: AuthService) {}
 
   async scanQR() {
-    const result = await BarcodeScanner.startScan();
-    console.log(result);
+    console.log('Iniciando el escaneo de QR...');
+    // Verificar permisos de la cámara
+    const hasPermission = await BarcodeScanner.checkPermission({ force: true });
+    if (hasPermission) {
+      // Ocultar el fondo de la WebView
+      BarcodeScanner.hideBackground();
+      try {
+        const result = await BarcodeScanner.startScan();
+        console.log('Resultado del escaneo de QR:', result);
+        if (result.hasContent) {
+          console.log(result.content); // log the raw scanned content
+        }
+      } catch (error) {
+        console.error('Error durante el escaneo de QR:', error);
+      }
+    } else {
+      console.log('Permiso de cámara no concedido');
+    }
   }
 
   async presentAlert() {
