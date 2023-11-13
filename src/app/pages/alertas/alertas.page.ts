@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-alertas',
@@ -7,46 +8,28 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['./alertas.page.scss'],
 })
 export class AlertasPage implements OnInit {
+  usuario = { username: '' };
+  contador: number = 0;
+  constructor(private alertController: AlertController, private authService: AuthService) { }
 
-  constructor(private alertController:AlertController) { }
 
 
-  
-  ngOnInit() {
-  }
-
- ionViewWillEnter() {
-  console.log("Antes de entrar a la página")
-  
- }
-
- ionViewDidEnter() {
-  console.log("Ya entró a la página");
- }
-
- ionViewWillLeave() {
-  console.log("Me voy de la página");
- }
-
- ionViewDidLeave() {
-  console.log("Ya no estoy en la página");
- }
-
-  async presentAlert(msg:string) {
-    const alert = await this.alertController.create({
-      header: 'Alerta',
-      subHeader: 'Información',
-      message: msg,
-      buttons: ['OK','Cancel'],
-      backdropDismiss:false,
-      
-    });
-
-    await alert.present();
-
-    await alert.onDidDismiss()
-    {
-      console.log("Cerrando la alerta") 
+  async ngOnInit() {
+    let user = await this.authService.getCurrentUser();
+    if (user && user.email) {
+      console.log("sexo");
+      let emailPrefix = user.email.split('@')[0];
+      let contador = localStorage.getItem(emailPrefix);
+      console.log(contador);
     }
+    else {
+      console.log("No aparece como conectado")
+    }
+    if (this.contador ==null)
+    console.log("No autorizado")
   }
+  
+
+
 }
+
