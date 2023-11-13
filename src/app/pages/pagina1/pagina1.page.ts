@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
-
-
+import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
 
 @Component({
   selector: 'app-pagina1',
@@ -15,6 +14,11 @@ export class Pagina1Page implements OnInit {
   public alertButtons = ['OK'];
 
   constructor(private alertController: AlertController, private router: Router,  private authService: AuthService) {}
+
+  async scanQR() {
+    const result = await BarcodeScanner.startScan();
+    console.log(result);
+  }
 
   async presentAlert() {
     const alert = await this.alertController.create({
@@ -30,22 +34,20 @@ export class Pagina1Page implements OnInit {
         },
       ],
     });
-  
+
     await alert.present();
   }
-  
+
   navigateToOtherPage() {
     // Redirige a la página deseada utilizando el enrutador de Ionic
     this.router.navigate(['/pagina2']); // Reemplaza 'otra-pagina' con el nombre de tu página de destino
   }
-  
+
   onClick(ruta:string)
   {
     this.router.navigate(['/'+ruta])
   }
 
-
-  
   async ngOnInit() {  //Crear un return en formulario para k no se vea la pagina
     let user = await this.authService.getCurrentUser();
     if (user && user.email) {
@@ -56,7 +58,5 @@ export class Pagina1Page implements OnInit {
       this.router.navigate(['/formulario'])
       console.log("No autorizado")
     }
-}
-  
-
+  }
 }
