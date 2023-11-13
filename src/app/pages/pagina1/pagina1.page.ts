@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
-
-
+import { Camera, CameraResultType } from '@capacitor/camera';
 
 @Component({
   selector: 'app-pagina1',
@@ -11,10 +10,10 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./pagina1.page.scss'],
 })
 export class Pagina1Page implements OnInit {
-  rol: string | null= '';
+  rol: string | null = '';
   public alertButtons = ['OK'];
 
-  constructor(private alertController: AlertController, private router: Router,  private authService: AuthService) {}
+  constructor(private alertController: AlertController, private router: Router, private authService: AuthService) {}
 
   async presentAlert() {
     const alert = await this.alertController.create({
@@ -30,33 +29,37 @@ export class Pagina1Page implements OnInit {
         },
       ],
     });
-  
+
     await alert.present();
   }
-  
+
   navigateToOtherPage() {
     // Redirige a la página deseada utilizando el enrutador de Ionic
-    this.router.navigate(['/pagina2']); // Reemplaza 'otra-pagina' con el nombre de tu página de destino
-  }
-  
-  onClick(ruta:string)
-  {
-    this.router.navigate(['/'+ruta])
+    this.router.navigate(['/pagina2']);
   }
 
+  async ngOnInit() {
+    // ... (código existente)
 
-  
-  async ngOnInit() {  //Crear un return en formulario para k no se vea la pagina
-    let user = await this.authService.getCurrentUser();
-    if (user && user.email) {
-      this.rol = localStorage.getItem(user.email);
-    }
-    if (this.rol == null || this.rol == '')
-    {
-      this.router.navigate(['/formulario'])
-      console.log("No autorizado")
-    }
-}
-  
+    // Llama a takePicture al cargar la página
+    await this.takePicture();
+  }
 
+  async takePicture() {
+    const image = await Camera.getPhoto({
+      quality: 90,
+      allowEditing: true,
+      resultType: CameraResultType.Uri,
+    });
+
+    // image.webPath contendrá una ruta que se puede establecer como src de una imagen.
+    // Puedes acceder al archivo original utilizando image.path, que se puede
+    // pasar a la API de Filesystem para leer los datos sin procesar de la imagen,
+    // si lo deseas (o pasa resultType: CameraResultType.Base64 para getPhoto)
+    const imageUrl = image.webPath;
+
+    // Aquí es donde necesitas un elemento HTML con la referencia o ID apropiado
+    // para establecer la propiedad src. Reemplaza 'miImagen' con tu referencia real.
+    // document.getElementById('miImagen').src = imageUrl;
+  }
 }
