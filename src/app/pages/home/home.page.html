@@ -8,32 +8,32 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  
-  <br>
-  
 
+  <!-- Registrar Asistencia QR - Solo para roles de 'alumno' -->
   <ion-button (click)="onClick('pagina1')" expand="full" color="tertiary" *ngIf="rol === 'alumno'">
-    Registrar Asistencia QR
-</ion-button>
-<br>
-
-<ion-button (click)="onClick('pagina2')" expand="full" color="tertiary" *ngIf="rol === 'profesor'">
-    Generar Qr Asistencia
-</ion-button>
-<br>
-
-<ion-button (click)="onClick('alertas')" expand="full" color="tertiary" *ngIf="rol === 'alumno'">
-    Asistencias
-</ion-button>
-<br>
-<ion-button (click)="onClick('asisprofe')" expand="full" color="tertiary" *ngIf="rol === 'profesor'"> 
-    Asistencias
-</ion-button>
-<br>
-<ion-button (click)="logout()" expand="full" color="danger"> 
-  Desconectarse
-</ion-button>
+    <ion-icon name="qr-code-outline"></ion-icon> Registrar Asistencia QR
+  </ion-button>
   <br>
+  <!-- Generar Qr Asistencia - Solo para roles de 'profesor' -->
+  <ion-button (click)="onClick('pagina2')" expand="full" color="tertiary" *ngIf="rol === 'profesor'">
+    <ion-icon name="barcode-outline"></ion-icon> Generar QR Asistencia
+  </ion-button>
+  <br>
+  <!-- Asistencias - Solo para roles de 'alumno' -->
+  <ion-button (click)="onClick('alertas')" expand="full" color="tertiary" *ngIf="rol === 'alumno'">
+    <ion-icon name="checkmark-circle-outline"></ion-icon> Asistencias
+  </ion-button>
+  <br>
+  <!-- Asistencias - Solo para roles de 'profesor' -->
+  <ion-button (click)="onClick('asisprofe')" expand="full" color="tertiary" *ngIf="rol === 'profesor'">
+    <ion-icon name="clipboard-outline"></ion-icon> Asistencias
+  </ion-button>
+  <br>
+  <!-- Desconectarse -->
+  <ion-button (click)="logout()" expand="full" color="danger">
+    <ion-icon name="log-out-outline"></ion-icon> Desconectarse
+  </ion-button>
 
 </ion-content>
+
 
