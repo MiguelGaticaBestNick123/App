@@ -7,7 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { environment } from 'src/environments/environment';
 import { RouterModule } from '@angular/router';
 import { AngularFireModule } from '@angular/fire/compat';
-
+import {BarcodeScanner} from '@awesome-cordova-plugins/barcode-scanner/ngx'
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -17,7 +17,5 @@ import { AngularFireModule } from '@angular/fire/compat';
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase)
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
-  bootstrap: [AppComponent],
-})
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, BarcodeScanner],})
 export class AppModule { }

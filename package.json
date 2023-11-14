@@ -22,6 +22,7 @@
     "@angular/platform-browser": "^16.0.0",
     "@angular/platform-browser-dynamic": "^16.0.0",
     "@angular/router": "^16.0.0",
+    "@awesome-cordova-plugins/barcode-scanner": "^6.4.0",
     "@capacitor/android": "5.2.3",
     "@capacitor/app": "5.0.6",
     "@capacitor/camera": "^5.0.7",
@@ -36,6 +37,7 @@
     "firebase": "^10.5.2",
     "ionicons": "^7.0.0",
     "nodemailer": "^6.9.7",
+    "phonegap-plugin-barcodescanner": "^8.1.0",
     "rxjs": "~7.8.0",
     "zone.js": "~0.13.0"
   },

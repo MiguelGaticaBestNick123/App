@@ -8,9 +8,8 @@
   </ion-toolbar>
 </ion-header> -->
 
-<app-encabezado titulo="Escaneo QR"></app-encabezado>
-
-<ion-content>
-  <img #miImagen />
-
+<ion-content [fullscreen]="true" class="ion-padding">
+  <ion-button (click)="scan()" expand="full" >
+    Scanear
+  </ion-button>
 </ion-content>
