@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth.service';
+import { Router, ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-alertas',
@@ -8,26 +10,22 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./alertas.page.scss'],
 })
 export class AlertasPage implements OnInit {
-  usuario = { username: '' };
-  contador: number = 0;
-  constructor(private alertController: AlertController, private authService: AuthService) { }
+  contador: number;
+  constructor(private alertController: AlertController, private authService: AuthService, private route: ActivatedRoute, private router: Router) { }
+  
 
 
+  ngOnInit() {
+    this.route.queryParams.subscribe(params => {
+        const navigation = this.router.getCurrentNavigation();
+        if (navigation && navigation.extras.state) {
+            this.contador = navigation.extras.state['contador'];
+        } else {
+            this.contador = Number(localStorage.getItem('contador')) || 0; // Recuperar el contador de localStorage
+        }
+    });
+}
 
-  async ngOnInit() {
-    let user = await this.authService.getCurrentUser();
-    if (user && user.email) {
-      console.log("sexo");
-      let emailPrefix = user.email.split('@')[0];
-      let contador = localStorage.getItem(emailPrefix);
-      console.log(contador);
-    }
-    else {
-      console.log("No aparece como conectado")
-    }
-    if (this.contador ==null)
-    console.log("No autorizado")
-  }
   
 
 
