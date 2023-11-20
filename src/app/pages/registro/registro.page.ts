@@ -47,6 +47,7 @@ export class RegistroPage implements OnInit {
         console.log(this.usuario.role)
         if (this.usuario.username && this.usuario.role) {
           localStorage.setItem(this.usuario.username, this.usuario.role)
+          localStorage.setItem('username', this.usuario.username);
         }
         // Almacenar el rol del usuario en el almacenamiento local
         let navigationExtras: NavigationExtras = {
