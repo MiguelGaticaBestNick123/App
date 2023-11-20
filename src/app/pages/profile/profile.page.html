@@ -1,24 +1,29 @@
-<ion-header [translucent]="true">
-  <!-- Encabezado de la página de perfil -->
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home" text="Atrás"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Mi perfil</ion-title>
+  </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-card *ngIf="userData">
+<ion-content [fullscreen]="true" class="ion-padding">
+  <ion-card *ngIf="userData" class="profile-card">
     <ion-card-header>
       <ion-card-title>Información del Usuario</ion-card-title>
     </ion-card-header>
-    <ion-card-content>
-      <ion-avatar>
-        <img [src]="userData.photo" alt="Foto de perfil">
+    <ion-card-content class="ion-text-center">
+      <ion-avatar class="profile-avatar">
+        <img src="assets/img/user.png" alt="Foto de perfil">
       </ion-avatar>
       <ion-list>
         <ion-item>
           <ion-label>Nombre:</ion-label>
-          <ion-note>{{ userData.name }}</ion-note>
+          <ion-note>{{ usuario }}</ion-note>
         </ion-item>
         <ion-item>
           <ion-label>Correo:</ion-label>
-          <ion-note>{{ userData.email }}</ion-note>
+          <ion-note>{{ correo }}</ion-note>
         </ion-item>
         <!-- Otros detalles del usuario -->
       </ion-list>

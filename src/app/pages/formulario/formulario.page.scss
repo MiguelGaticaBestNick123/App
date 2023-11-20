@@ -1,5 +1,42 @@
-.texto-centrado{
-    display: block;
-    margin: auto;
+ion-toolbar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .logo-img {
+    width: 100%;
+    max-width: 400px; 
+    height: auto;
+    align-self: center;  
+  }
+  
+  .login-container {
     text-align: center;
-}
+  }
+  
+  .login-title {
+    font-family: 'TuFuentePersonalizada', Arial, Helvetica, sans-serif; /* Reemplaza 'TuFuentePersonalizada' con el nombre de la fuente que prefieras */
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: var(--ion-color-primary); /* Color primario de Ionic */
+  }
+  
+  .login-form {
+    max-width: 80%;
+    margin: auto;
+  }
+  
+  .login-button {
+    margin-top: 20px;
+  }
+  
+  .login-links {
+    margin-top: 20px;
+  }
+  
+  .texto-centrado {
+    text-align: center;
+  }
