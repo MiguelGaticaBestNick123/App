@@ -8,8 +8,16 @@
               <ion-item slot="header" color="light">
                 <b><ion-label>Programacion web</ion-label></b>
               </ion-item>
-              <div class="ion-padding" slot="content">Clases asistidas: {{contador}}</div>
-          </ion-accordion>
+              <div>
+                <p>{{asignatura}}</p>
+                <p>{{fecha}}</p>
+
+              </div>
+              <div *ngFor="let registro of registros">
+                <p>Asignatura: {{ registro.asignatura }}</p>
+                <p>Fecha: {{ registro.fecha }}</p>
+                <hr> <!-- Línea divisoria opcional entre registros -->
+              </div>          </ion-accordion>
           </ion-accordion-group>
     
   

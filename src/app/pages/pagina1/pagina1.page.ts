@@ -24,7 +24,7 @@ export class Pagina1Page implements OnInit {
         console.log("Scaneando...", barcodedata);
         this.texto = barcodedata.text; // Obtener el texto del código QR
         if (this.texto) {          
-            localStorage.setItem('contador', this.asistencia); // Almacenar el contador en localStorage
+            localStorage.setItem('asistencia', this.asistencia); // Almacenar el contador en localStorage
             let navigationExtras: NavigationExtras = {
                 state: {
                     contador: this.asistencia
@@ -83,8 +83,6 @@ async presentAlert() {
     if (user && user.email) {
       this.rol = localStorage.getItem(user.email);
       let emailPrefix = user.email.split('@')[0];
-      let contadorStr = localStorage.getItem(emailPrefix);
-      this.contador = contadorStr ? parseInt(contadorStr) : 0;
     }
   
     if (this.rol == null || this.rol == '')

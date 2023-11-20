@@ -24,7 +24,8 @@ export class AlertasPage implements OnInit {
         if (navigation && navigation.extras.state) {
             this.asistencia = navigation.extras.state['asistencia'];
             this.asignatura = this.asistencia.split('@')[0];
-            this.fecha = this.asistencia.split('@')[0];
+            this.fecha = this.asistencia[1]
+              ;
             this.registros.push({ asignatura: this.asignatura, fecha: this.fecha });
         } else {
             this.asistencia = String(localStorage.getItem('asistencia')) || 'no encontrado'; // Recuperar el contador de localStorage
