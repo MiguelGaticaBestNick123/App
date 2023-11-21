@@ -22,15 +22,17 @@ export class Pagina1Page implements OnInit {
   scan(){
     this.barcodescanner.scan().then(barcodedata => {
         console.log("Scaneando...", barcodedata);
-        this.texto = barcodedata.text; // Obtener el texto del código QR
+        this.texto = barcodedata.text; 
+        console.log(this.texto);
         if (this.texto) {          
-            localStorage.setItem('asistencia', this.asistencia); // Almacenar el contador en localStorage
+            localStorage.setItem('texto', this.texto); 
             let navigationExtras: NavigationExtras = {
                 state: {
-                    contador: this.asistencia
+                    texto: this.texto
                 }
             };
             this.presentAlert()
+            console.log(this.texto);
             this.router.navigate(['/alertas'], navigationExtras);
         }
     }).catch(err => {

@@ -1,24 +1,9 @@
 <app-encabezado titulo="Asistencias"></app-encabezado>
 
 <ion-content class="ion-padding">
-  
-
-      <ion-accordion-group>
-            <ion-accordion value="first">
-              <ion-item slot="header" color="light">
-                <b><ion-label>Programacion web</ion-label></b>
-              </ion-item>
-              <div>
-                <p>{{asignatura}}</p>
-                <p>{{fecha}}</p>
-
-              </div>
-              <div *ngFor="let registro of registros">
-                <p>Asignatura: {{ registro.asignatura }}</p>
-                <p>Fecha: {{ registro.fecha }}</p>
-                <hr> <!-- Línea divisoria opcional entre registros -->
-              </div>          </ion-accordion>
-          </ion-accordion-group>
-    
-  
+  <div *ngFor="let registro of registros">
+    <p>Asignatura: {{ registro.asignatura }}</p>
+    <p>Fecha: {{ registro.fecha }}</p>
+</div>
 </ion-content>
+
