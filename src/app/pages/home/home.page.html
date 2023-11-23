@@ -1,39 +1,28 @@
 <ion-header>
   <ion-toolbar color="dark" >
     <ion-title>
-      Asistencia Duoc
+      Asistencia Plumbus
     </ion-title>
     <ion-icon slot="end" name="person" size="large" class="ion-padding" (click)="onClick('profile')"></ion-icon>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
-  
-  <br>
-  
+<ion-content class="ion-padding" style="--background: url('/assets/img/rymfondo.png') no-repeat center center / cover;">
 
-  <ion-button (click)="onClick('pagina1')" expand="full" color="tertiary" *ngIf="rol === 'alumno'">
+  <ion-button (click)="onClick('pagina1')" expand="full" style="--background: #078C03; box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.25);" >
     Registrar Asistencia QR
-</ion-button>
-<br>
+  </ion-button>
 
-<ion-button (click)="onClick('pagina2')" expand="full" color="tertiary" *ngIf="rol === 'profesor'">
-    Generar Qr Asistencia
-</ion-button>
-<br>
+  <br>
 
-<ion-button (click)="onClick('alertas')" expand="full" color="tertiary" *ngIf="rol === 'alumno'">
+  <ion-button (click)="onClick('alertas')" expand="full" style="--background: #078C03; box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.25);">
     Asistencias
-</ion-button>
-<br>
-<ion-button (click)="onClick('asisprofe')" expand="full" color="tertiary" *ngIf="rol === 'profesor'"> 
-    Asistencias
-</ion-button>
-<br>
-<ion-button (click)="logout()" expand="full" color="danger"> 
-  Desconectarse
-</ion-button>
+  </ion-button>
+  <br>
+
+  <ion-button (click)="logout()" expand="full" color="danger"> 
+    Desconectarse
+  </ion-button>
   <br>
 
 </ion-content>
-

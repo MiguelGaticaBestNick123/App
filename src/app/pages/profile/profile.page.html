@@ -7,25 +7,24 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" class="ion-padding">
-  <ion-card *ngIf="userData" class="profile-card">
-    <ion-card-header>
+<ion-content [fullscreen]="true" class="ion-padding" style="--background: url('/assets/img/profilefondo.jpg') no-repeat center center / cover;">
+  <ion-card *ngIf="userData" class="profile-card" >
+    <ion-card-header >
       <ion-card-title>Información del Usuario</ion-card-title>
     </ion-card-header>
-    <ion-card-content class="ion-text-center">
+    <ion-card-content class="ion-text-center" >
       <ion-avatar class="profile-avatar">
         <img src="assets/img/user.png" alt="Foto de perfil">
       </ion-avatar>
-      <ion-list>
-        <ion-item>
+      <ion-list >
+        <ion-item >
           <ion-label>Nombre:</ion-label>
-          <ion-note>{{ usuario }}</ion-note>
+          <ion-note style="color: white; font-weight: bold;">{{ usuario }}</ion-note>
         </ion-item>
-        <ion-item>
+        <ion-item >
           <ion-label>Correo:</ion-label>
-          <ion-note>{{ correo }}</ion-note>
+          <ion-note style="color: white; font-weight: bold;">{{ correo }}</ion-note>
         </ion-item>
-        <!-- Otros detalles del usuario -->
       </ion-list>
     </ion-card-content>
   </ion-card>

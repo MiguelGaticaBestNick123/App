@@ -10,7 +10,7 @@
 
 <app-encabezado titulo="Escaneo QR"></app-encabezado>
 
-<ion-content class="custom-background ion-padding">
+<ion-content class="custom-background ion-padding"  style="--background: url('/assets/img/qrfondo.jpg') no-repeat center center / cover;">
   <br>
   <br>
   <br>
@@ -38,7 +38,7 @@
   <br>
   <br>
   <br>
-  <ion-button (click)="scan()" expand="full">Escanear QR</ion-button>
+  <ion-button (click)="scan()" expand="full" style="--background: #078C03; --color: white;">Escanear QR</ion-button>
   <br>
   <ion-alert
     trigger="present-alert"

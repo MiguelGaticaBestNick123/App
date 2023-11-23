@@ -4,32 +4,33 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
+<ion-content class="ion-padding" style="--background: url('/assets/img/formfondo.jpg') no-repeat center center / cover;">
   <div class="login-container">
-    <h3 class="login-title">Iniciar Sesión</h3>
+    <h3 class="login-title" style="color: #0DF205;">Iniciar Sesión</h3>
 
     <form #miFormulario="ngForm" (ngSubmit)="onSubmit()" class="login-form">
       <ion-item class="ion-margin-bottom">
-        <ion-label position="floating">E-mail</ion-label>
-        <ion-input type="email" name="email" [(ngModel)]="usuario.username" required></ion-input>
+        <ion-label position="floating" style="color: #0DF205;">E-mail</ion-label>
+        <ion-input type="email" name="email" [(ngModel)]="usuario.username" required style="background-color: transparent;"></ion-input>
       </ion-item>
-
+    
       <ion-item class="ion-margin-bottom">
-        <ion-label position="floating">Contraseña</ion-label>
-        <ion-input type="password" name="password" [(ngModel)]="usuario.password" required></ion-input>
+        <ion-label position="floating"style="color: #0DF205;">Contraseña</ion-label>
+        <ion-input type="password" name="password" [(ngModel)]="usuario.password" required style="background-color: transparent;"></ion-input>
       </ion-item>
-
-      <ion-button expand="full" color="primary" type="submit" [disabled]="miFormulario.invalid" class="login-button">
+    
+      <ion-button expand="full" type="submit" [disabled]="miFormulario.invalid" class="login-button" style="--background: #078C03;">
         Iniciar Sesión
       </ion-button>
     </form>
+    
 
     <div class="login-links">
-      <a (click)="onClick('olvideclave')">¿Olvidaste tu contraseña?</a>
+      <a (click)="onClick('olvideclave')" style="color: #0DF205;">¿Olvidaste tu contraseña?</a>
       <br>
       <br>
-      <a (click)="onClick('registrarse')">Registrarse</a>
+      <a (click)="onClick('registrarse')" style="color: #0DF205;">Registrarse</a>
     </div>
-    <p>1.3</p>
+    <p>1.3.7</p>
   </div>
 </ion-content>

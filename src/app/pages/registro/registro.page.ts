@@ -9,7 +9,7 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['./registro.page.scss'],
 })
 export class RegistroPage implements OnInit {
-  usuario = {username: '', password: '', role: ''}
+  usuario = {username: '', password: ''}
   constructor(private authService: AuthService, private router: Router,
     private alertController: AlertController) { }
 
@@ -44,21 +44,13 @@ export class RegistroPage implements OnInit {
     try {
         await this.authService.register(this.usuario.username, this.usuario.password);
         console.log('Registro exitoso');
-        console.log(this.usuario.role)
-        if (this.usuario.username && this.usuario.role) {
-          localStorage.setItem(this.usuario.username, this.usuario.role)
-          localStorage.setItem('username', this.usuario.username);
-        }
-        // Almacenar el rol del usuario en el almacenamiento local
-        let navigationExtras: NavigationExtras = {
-            state: {
-                role: this.usuario.role
-            }
-        };
-        
-
+        if (this.usuario.username ) 
+        {
+          localStorage.setItem('username', this.usuario.username)
+        } 
         this.showConfirmation();
-    } catch (error) {
+      }
+        catch (error) {
         console.error(error);
     }
   }

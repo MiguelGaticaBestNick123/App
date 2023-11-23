@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -9,9 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class FormularioPage implements OnInit {
   usuario = {username: '', password: ''};
-  role: string = '';
-
-  constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute) { }
+  constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute,  private changeDetector: ChangeDetectorRef) { }
   
   onClick(pageName: string) {
     if (pageName === 'olvideclave') {
@@ -27,11 +25,16 @@ export class FormularioPage implements OnInit {
     if (user){
       this.router.navigate(['/home']);
     }
+    this.changeDetector.detectChanges(); 
   }
 
   onSubmit() {
     this.authService.login(this.usuario.username, this.usuario.password)
     .then((result) => {
+      if (this.usuario.username ) 
+      {
+        localStorage.setItem('username', this.usuario.username)
+      } 
     console.log(result);
     this.router.navigate(['/home'])  
     }

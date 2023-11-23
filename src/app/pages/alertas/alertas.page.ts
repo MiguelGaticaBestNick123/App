@@ -21,15 +21,14 @@ export class AlertasPage implements OnInit {
 
   ngOnInit() {
     let registrosLocalStorage = localStorage.getItem('registros');
-    this.registros = registrosLocalStorage ? JSON.parse(registrosLocalStorage) : []; // Recuperar registros del localStorage
+    this.registros = registrosLocalStorage ? JSON.parse(registrosLocalStorage) : []; 
 
     this.route.queryParams.subscribe(params => {
-        const navigation = this.router.getCurrentNavigation();
-        this.texto = String(localStorage.getItem('texto')) || 'no encontrado'; 
-        if (!this.texto || this.texto === 'no encontrado') { 
-            if (navigation && navigation.extras.state) {
-                this.texto = navigation.extras.state['texto'];
-            }
+      const navigation = this.router.getCurrentNavigation();
+      this.texto = String(localStorage.getItem('texto')) || 'no encontrado'; 
+      if (this.texto && this.texto !== 'no encontrado') { 
+        if (navigation && navigation.extras.state) {
+          this.texto = navigation.extras.state['texto'];
         }
         let partes = this.texto.split('@');
         this.asignatura = partes[0];
@@ -37,11 +36,14 @@ export class AlertasPage implements OnInit {
         console.log(this.asignatura);
         console.log(this.fecha);
         this.registros.push({ asignatura: this.asignatura, fecha: this.fecha });
-        localStorage.setItem('registros', JSON.stringify(this.registros)); // Almacenar registros en localStorage
+        localStorage.setItem('registros', JSON.stringify(this.registros)); 
+        localStorage.removeItem('texto');
         this.changeDetector.detectChanges(); 
         console.log(JSON.stringify(this.registros+' registro'));
-    });
-}
+      }
+
+    }); 
+  }
 
 
 

@@ -10,8 +10,6 @@ import {BarcodeScanner} from '@awesome-cordova-plugins/barcode-scanner/ngx'
   styleUrls: ['./pagina1.page.scss'],
 })
 export class Pagina1Page implements OnInit {
-  rol: string | null= '';
-
   public alertButtons = ['OK'];
   texto:string=''
   public asistencia: string = '';
@@ -83,12 +81,11 @@ async presentAlert() {
     let user = await this.authService.getCurrentUser();
   
     if (user && user.email) {
-      this.rol = localStorage.getItem(user.email);
+
       let emailPrefix = user.email.split('@')[0];
     }
   
-    if (this.rol == null || this.rol == '')
-    {
+    else    {
       this.router.navigate(['/formulario'])
       console.log("No autorizado")
     }

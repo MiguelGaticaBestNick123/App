@@ -10,32 +10,28 @@ import { AuthService } from '../../services/auth.service';
 })
 export class ProfilePage implements OnInit {
   userData: any;
-  rol: string | null = '';
   usuario: string | null = '';
   correo: string | null = '';
 
   constructor(private router: Router, private dataService: DataService, private authService: AuthService) {}
 
   async ngOnInit() {
+    console.log(localStorage.getItem('username'))
     let user = await this.authService.getCurrentUser();
-    if (user && user.email) {
-      this.correo = localStorage.getItem('username');
-      if (this.correo) {
-        this.usuario = this.correo.split('@')[0];
-      }
-      this.rol = localStorage.getItem(user.email);
+    this.correo = localStorage.getItem('username');
+    if (this.correo) {
+      this.usuario = this.correo.split('@')[0];
     }
-
-    if (this.rol == null || this.rol == '') {
+    if (user && user.email) {
+      this.getUserData(); 
+    }
+    else {
       this.router.navigate(['/formulario']);
       console.log("No autorizado");
-    } else {
-      this.getUserData(); 
     }
   }
 
   getUserData() {
-    
     this.userData = this.dataService.getUser(); 
   }
 }
