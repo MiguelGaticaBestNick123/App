@@ -4,20 +4,20 @@
     <img style="width: 60%;" src="assets/img/2560px-Logo_DuocUC.svg.png" (click)="onClick('inicio')">
   </ion-toolbar>
 </ion-header>
-<ion-content class="ion-padding" color="dark">
+<ion-content class="ion-padding" style="--background: url('/assets/img/formfondo.jpg') no-repeat center center / cover;">
   <h3 style="text-align: center;" >Recuperar clave</h3>
   <br>
   <form [formGroup]="resetPasswordForm" (ngSubmit)="onSubmit()">
 
     <ion-item>
-      <ion-label position="floating">Correo Electrónico</ion-label>
+      <ion-label position="floating" style="color: #0DF205;">Correo Electrónico</ion-label>
       <ion-input type="email" formControlName="email"></ion-input>
     </ion-item>
 
     <ion-button 
       expand="block" 
       type="submit"
-      [disabled]="resetPasswordForm.invalid">
+      [disabled]="resetPasswordForm.invalid" style="--background: #078C03;">
         Enviar
     </ion-button>
 

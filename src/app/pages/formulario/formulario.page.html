@@ -11,12 +11,12 @@
     <form #miFormulario="ngForm" (ngSubmit)="onSubmit()" class="login-form">
       <ion-item class="ion-margin-bottom">
         <ion-label position="floating" style="color: #0DF205;">E-mail</ion-label>
-        <ion-input type="email" name="email" [(ngModel)]="usuario.username" required style="background-color: transparent;"></ion-input>
+        <ion-input type="email" name="email" [(ngModel)]="usuario.username" required style="--background: transparent;"></ion-input>
       </ion-item>
     
       <ion-item class="ion-margin-bottom">
         <ion-label position="floating"style="color: #0DF205;">Contraseña</ion-label>
-        <ion-input type="password" name="password" [(ngModel)]="usuario.password" required style="background-color: transparent;"></ion-input>
+        <ion-input type="password" name="password" [(ngModel)]="usuario.password" required style="--background: transparent;"></ion-input>
       </ion-item>
     
       <ion-button expand="full" type="submit" [disabled]="miFormulario.invalid" class="login-button" style="--background: #078C03;">
