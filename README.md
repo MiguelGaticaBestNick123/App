@@ -9,10 +9,10 @@ Esta aplicación móvil desarrollada en Ionic Angular permite a los estudiantes 
 - **Integración con Firebase**: Utiliza Firebase para la autenticación de usuarios y el almacenamiento de datos.
 
 ## Imágenes
-- ![Interfaz de escaneo](https://imgur.com/btvUZJk)
-- ![Escaneo](https://imgur.com/zorXr6r)
-- ![Asistencias](https://imgur.com/4ypIYQC)
-- ![Despliegue de asistencia](https://imgur.com/QiLm1yG)
+- ![Interfaz de escaneo](https://i.imgur.com/btvUZJk.jpg)
+- ![Escaneo](https://i.imgur.com/zorXr6r.jpg)
+- ![Asistencias](https://i.imgur.com/4ypIYQC.jpg)
+- ![Despliegue de asistencia](https://i.imgur.com/QiLm1yG.jpg)
 
 ## Descargas y Código Fuente
 - **APK**: [Descargar la APK aquí](https://www.mediafire.com/file/roxbpxtuagqzpfq/app-debug.apk/file)
