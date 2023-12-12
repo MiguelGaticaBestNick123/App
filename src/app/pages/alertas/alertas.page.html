@@ -4,62 +4,20 @@
     <ion-row color="dark">
       <ion-col size="12" size-md="6" color="dark">
         <ion-accordion-group color="dark">
-          <ion-accordion>
+          <ion-accordion *ngFor="let asignatura of asignaturas | keyvalue">
             <ion-card slot="header">
               <ion-card-header>
-                <ion-card-title>Programación movil</ion-card-title>
+                <ion-card-title>{{ asignatura.key }} [Asistencia {{ asignatura.value.calcularPorcentaje() | number: '1.0-2' }}%]</ion-card-title>
               </ion-card-header>
             </ion-card>
             <div slot="content">
               <ion-card-content>
                 <p>Asistencias:</p>
+                <!-- Mostrar las fechas de asistencia para esta asignatura -->
                 <div *ngFor="let registro of registros">
-                  <p *ngIf="registro.asignatura == 'Programación movil'" style="border: 1px solid black; padding: 10px; margin: 10px; border-radius: 5px;">Fecha: {{ registro.fecha }}</p>
-                </div>
-              </ion-card-content>
-            </div>
-          </ion-accordion>
-          <ion-accordion>
-            <ion-card slot="header">
-              <ion-card-header>
-                <ion-card-title>Programación web</ion-card-title>
-              </ion-card-header>
-            </ion-card>
-            <div slot="content">
-              <ion-card-content>
-                <p>Asistencias:</p>
-                <div *ngFor="let registro of registros">
-                  <p *ngIf="registro.asignatura == 'Programación web'" style="border: 1px solid black; padding: 10px; margin: 10px; border-radius: 5px;">Fecha: {{ registro.fecha }}</p>
-                </div>
-              </ion-card-content>
-            </div>
-          </ion-accordion>
-          <ion-accordion>
-            <ion-card slot="header">
-              <ion-card-header>
-                <ion-card-title>Programación de sistemas</ion-card-title>
-              </ion-card-header>
-            </ion-card>
-            <div slot="content">
-              <ion-card-content>
-                <p>Asistencias:</p>
-                <div *ngFor="let registro of registros">
-                  <p *ngIf="registro.asignatura == 'Programación de sistemas'" style="border: 1px solid black; padding: 10px; margin: 10px; border-radius: 5px;">Fecha: {{ registro.fecha }}</p>
-                </div>
-              </ion-card-content>
-            </div>
-          </ion-accordion>
-          <ion-accordion>
-            <ion-card slot="header">
-              <ion-card-header>
-                <ion-card-title>Programación de base de datos</ion-card-title>
-              </ion-card-header>
-            </ion-card>
-            <div slot="content">
-              <ion-card-content>
-                <p>Asistencias:</p>
-                <div *ngFor="let registro of registros">
-                  <p *ngIf="registro.asignatura == 'Programación de base de datos'" style="border: 1px solid black; padding: 10px; margin: 10px; border-radius: 5px;">Fecha: {{ registro.fecha }}</p>
+                  <p *ngIf="registro.asignatura == asignatura.key" style="border: 1px solid black; padding: 10px; margin: 10px; border-radius: 5px;">
+                    Fecha: {{ registro.fecha }}
+                  </p>
                 </div>
               </ion-card-content>
             </div>
